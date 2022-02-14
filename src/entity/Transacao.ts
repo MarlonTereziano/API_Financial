@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 @Entity()
 export class Transacao {
 
-    constructor(titulo: string, valor: number, tipo:boolean) {
+    constructor(titulo: string, valor: number, tipo:"entrada" | "saida") {
         this.titulo = titulo;
         this.valor = valor;
         this.tipo = tipo;
@@ -19,5 +19,5 @@ export class Transacao {
     valor: number;
 
     @Column()
-    tipo: boolean;
+    tipo: "entrada" | "saida";
 }
