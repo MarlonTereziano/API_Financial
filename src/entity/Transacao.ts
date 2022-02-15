@@ -3,11 +3,12 @@ import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 @Entity()
 export class Transacao {
 
-    constructor(titulo: string, valor: number, tipo:"entrada" | "saida", categoria: string) {
+    constructor(titulo: string, valor: number, tipo:"entrada" | "saida", categoria: string, date:string) {
         this.titulo = titulo;
         this.valor = valor;
         this.tipo = tipo;
         this.categoria = categoria;
+        this.horario = date;
     }
 
     @PrimaryGeneratedColumn()
@@ -24,4 +25,7 @@ export class Transacao {
 
     @Column()
     tipo: "entrada" | "saida";
+
+    @Column()
+    horario: string;
 }
