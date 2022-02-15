@@ -1,6 +1,7 @@
 import { Contato } from '../entity/Contato';
 import { Router } from 'express';
 import { ContatoController } from '../controller/ContatoController';
+import * as moment from 'moment';
 
 export const routercontato = Router();
 const contatoCtrl = new ContatoController();
@@ -9,8 +10,9 @@ const contatoCtrl = new ContatoController();
  * Serviço pra salvar um novo contato
  */
 routercontato.post('/', async (req, res) => {
+    const date = moment().format('DD-MM-YYYY HH:mm:ss');
     const { nome, email, mensagem } = req.body;
-    const contato = new Contato(nome, email, mensagem);
+    const contato = new Contato(nome, email, mensagem, date);
     const contatoSalvo = await contatoCtrl.salvar(contato);
     res.json(contatoSalvo);
 });
@@ -28,6 +30,7 @@ routercontato.delete('/:id', async (req, res) => {
 routercontato.get('/', async (req, res) => {
     const contatos = await contatoCtrl.recuperarTodos();
     res.json(contatos);
+
 });
 
 /**
@@ -35,9 +38,12 @@ routercontato.get('/', async (req, res) => {
  */
 
 routercontato.put('/', async (req, res) => {
+    const date = moment().format('DD-MM-YYYY HH:mm:ss');
     const { id, nome, email, mensagem } = req.body;
-    const contato = new Contato(nome, email, mensagem);
+    const contato = new Contato(nome, email, mensagem, date);
     const contatoAtualizado = await contatoCtrl.atualizar(id, contato);
     res.json(contatoAtualizado);
 });
+
+
 

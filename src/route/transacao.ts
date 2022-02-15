@@ -9,8 +9,8 @@ const transacaoCtrl = new TransacaoController();
  * Serviço pra salvar uma nova transacao
  */
 routertransacao.post('/', async (req, res) => {
-    const { titulo, valor, tipo } = req.body;
-    const transacao = new Transacao(titulo, valor, tipo);
+    const { titulo, valor, tipo, categoria } = req.body;
+    const transacao = new Transacao(titulo, valor, tipo, categoria);
     const transacaoSalvo = await transacaoCtrl.salvar(transacao);
     res.json(transacaoSalvo);
 });
@@ -34,8 +34,8 @@ routertransacao.get('/', async (req, res) => {
  * Serviço para atualizar uma transacao
  */
 routertransacao.put('/', async (req, res) => {
-    const { id, nome, email, telefone } = req.body;
-    const transacao = new Transacao(nome, email, telefone);
+    const { id,titulo, valor, tipo, categoria } = req.body;
+    const transacao = new Transacao(titulo, valor, tipo, categoria);
     const transacaoAtualizado = await transacaoCtrl.atualizar(id, transacao);
     res.json(transacaoAtualizado);
 });

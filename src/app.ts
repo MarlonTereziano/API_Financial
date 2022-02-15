@@ -15,12 +15,18 @@ export const app = express();
 /**
  * Libera o acesso aos serviços
  */
-app.use(cors());
+//  const allowedOrigins = ['*'];
+//  const corsOptions = {
+//     origin: allowedOrigins,
+//     method: 'GET,OPTIONS,HEAD,PUT,PATCH,POST,DELETE',
+// }
+
+ app.use(cors());
 
 /**
  * Permite receber e enviar JSON
  */
-app.use(bodyParser.json());
+app.use(express.json());
 
 /**
  * Configura os logs
@@ -36,6 +42,7 @@ conectarServidorNoBD();
 /**
  * Configuração de rotas
  */
+
 
 app.use('/contato', routercontato);
 app.use('/transacao', routertransacao);
